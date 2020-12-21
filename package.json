@@ -1,5 +1,5 @@
 {
-  "name": "hollys-mirco-front-end-foundtion",
+  "name": "@hollysys-mirco-font-end/foundtion",
   "author": {
     "name": "quantianchao",
     "email": "304033826@qq.com"
@@ -15,6 +15,10 @@
   "dependencies": {
     "tsuml2": "0.2.0",
     "typescript": "latest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arashiquan33/HollysMircoFrontEndFoundtion"
   },
   "devDependencies": {
     "webpack": "5.11.0",
