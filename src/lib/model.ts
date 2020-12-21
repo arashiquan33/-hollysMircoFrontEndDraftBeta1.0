@@ -1,10 +1,10 @@
 
-import { AbstractHollysMircoFrontEndApp } from "./AbHollysMircoFrontEndApp";
+import { AbstractHollysysMircoFrontEndApp } from "./AbHollysysMircoFrontEndApp";
 
 
 export type Appclass = new (
     ...arg: any
-) => AbstractHollysMircoFrontEndApp;
+) => AbstractHollysysMircoFrontEndApp;
 
 
 //抽象定义应用注册时传递的参数
@@ -21,5 +21,5 @@ export interface AppConfig {
 
 export interface App extends AppConfig {
     isRunning: boolean;
-    instance: AbstractHollysMircoFrontEndApp;
+    instance: AbstractHollysysMircoFrontEndApp;
 }

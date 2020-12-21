@@ -2,9 +2,9 @@
  * @ 工单应用
  */
 
-import { AbstractHollysMircoFrontEndApp } from "./lib/AbHollysMircoFrontEndApp";
+import { AbstractHollysysMircoFrontEndApp } from "./lib/AbHollysysMircoFrontEndApp";
 
-export class HollysysWorkOrderApp extends AbstractHollysMircoFrontEndApp {
+export class HollysysWorkOrderApp extends AbstractHollysysMircoFrontEndApp {
     public beforeInstall() {
         console.log(`workorderApp is preparing install`);
     }

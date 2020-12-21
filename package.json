@@ -1,12 +1,12 @@
 {
-  "name": "@hollysys-mirco-font-end/foundtion",
+  "name": "@hollysys-mirco-font-end/core",
   "author": {
     "name": "quantianchao",
     "email": "304033826@qq.com"
   },
   "version": "1.0.0",
   "description": "微前端基座，负责管理微前端各个应用",
-  "main": "dist/HollysMircoFrontEndFoundtion.js",
+  "main": "dist/core.js",
   "scripts": {
     "start": "parcel index.html --open",
     "build": "webpack --config webpack.config.js",
@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/arashiquan33/HollysMircoFrontEndFoundtion"
+    "url": "https://github.com/arashiquan33/hollysys-mirco-front-end-core"
   },
   "devDependencies": {
     "webpack": "5.11.0",
