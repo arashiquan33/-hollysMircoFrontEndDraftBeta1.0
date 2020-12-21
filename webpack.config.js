@@ -4,8 +4,8 @@ module.exports = {
   entry: './src/lib/export.ts',
   output: {
     path: path.resolve(__dirname, 'dist/lib/'),
-    filename: 'HollysMircoFrontEndFoundtion.js',
-    library:"HollysMircoFrontEndFoundtion",
+    filename: 'core.js',
+    library:"HollysysMircoFrontEndCore",
     libraryTarget:"umd"
   },
   module: {
