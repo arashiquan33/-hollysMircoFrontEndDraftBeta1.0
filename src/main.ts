@@ -1,4 +1,4 @@
-import { HollysysAppManager } from "./HollysysAppManager";
+import { HollysysAppManager } from "./lib/HollysysAppManager";
 import { HollysysWorkOrderApp } from "./HollysysWorkOrderApp";
 import { HollysysMiApp } from "./HollysysMiApp";
 

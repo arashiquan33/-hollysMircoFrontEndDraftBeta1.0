@@ -1,9 +1,9 @@
-import { AbstractHollysysMircoFrontEndApp } from "./AbHollysysMircoFrontEndApp";
+import { AbstractHollysMircoFrontEndApp } from "./lib/AbHollysMircoFrontEndApp";
 
 /**
  * @ Mi应用
  */
-export class HollysysMiApp extends AbstractHollysysMircoFrontEndApp {
+export class HollysysMiApp extends AbstractHollysMircoFrontEndApp {
     public beforeInstall() {
         console.log(`miApp is preparing install`);
     }

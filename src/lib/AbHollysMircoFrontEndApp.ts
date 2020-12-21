@@ -1,7 +1,7 @@
 /**
  * @ =应用抽象类
  */
-export abstract class AbstractHollysysMircoFrontEndApp {
+export abstract class AbstractHollysMircoFrontEndApp {
     constructor(name: string, mountTo: HTMLElement) {
         this.name = name;
         this.mountTo = mountTo;

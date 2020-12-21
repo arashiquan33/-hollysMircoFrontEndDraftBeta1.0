@@ -1,4 +1,4 @@
-import { AbstractHollysysMircoFrontEndApp } from "./AbHollysysMircoFrontEndApp";
+
 
 
 import {AppConfig,App} from './model'
