@@ -12,6 +12,7 @@
     "build": "webpack --config webpack.config.js",
     "uml": "tsuml2 --glob ./src/**/*.ts  "
   },
+  "license": "MIT",
   "dependencies": {
     "tsuml2": "0.2.0",
     "typescript": "latest"
