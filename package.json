@@ -10,7 +10,9 @@
   "scripts": {
     "start": "parcel index.html --open",
     "build": "webpack --config webpack.config.js",
-    "uml": "tsuml2 --glob ./src/**/*.ts  "
+    "uml": "tsuml2 --glob ./src/**/*.ts  ",
+    "prepublish": "yarn build",
+    "publish": "npm publish --access public"
   },
   "license": "MIT",
   "dependencies": {
