@@ -4,7 +4,7 @@
     "name": "quantianchao",
     "email": "304033826@qq.com"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "微前端基座，负责管理微前端各个应用",
   "main": "dist/core.js",
   "scripts": {
@@ -24,9 +24,9 @@
     "url": "https://github.com/arashiquan33/hollysys-mirco-front-end-core"
   },
   "devDependencies": {
+    "ts-loader": "8.0.4",
     "webpack": "5.11.0",
-    "webpack-cli": "^4.2.0",
-    "ts-loader": "8.0.4"
+    "webpack-cli": "^4.2.0"
   },
   "keywords": [
     "微前端",
