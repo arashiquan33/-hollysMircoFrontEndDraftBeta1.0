@@ -1,11 +1,10 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/lib/export.ts',
+  entry: './src/lib/core.ts',
   output: {
     path: path.resolve(__dirname, 'dist/lib/'),
     filename: 'core.js',
-    
     libraryTarget:"umd"
   },
   module: {
