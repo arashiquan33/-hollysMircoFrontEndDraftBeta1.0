@@ -5,7 +5,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist/lib/'),
     filename: 'core.js',
-    library:"HollysysMircoFrontEndCore",
+    
     libraryTarget:"umd"
   },
   module: {
