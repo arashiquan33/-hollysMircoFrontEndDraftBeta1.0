@@ -4,7 +4,7 @@
     "name": "quantianchao",
     "email": "304033826@qq.com"
   },
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "微前端基座，负责管理微前端各个应用",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
