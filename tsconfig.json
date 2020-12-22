@@ -6,7 +6,7 @@
     "sourceMap": true,
     "allowJs": true,
     "declaration": true,
-    "declarationDir": "./dist",
+    "outDir": "./dist",
     "lib": [
       "esnext",
       "dom"
@@ -14,10 +14,10 @@
     "rootDir": "src",
     "moduleResolution": "node",
     "strict": true,
-    "useDefineForClassFields": true
+    "useDefineForClassFields": true,
   },
   "include": [
-    "src/lib/*"
+    "src/types/*"
   ],
   "exclude": ["node_modules", "dist"]
 }

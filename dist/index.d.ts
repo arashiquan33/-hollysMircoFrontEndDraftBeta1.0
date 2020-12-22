@@ -1,3 +1,3 @@
-export * from './lib/AbHollysysMircoFrontEndApp';
-export * from './lib/model';
-export * from './lib/HollysysAppManager';
+export * from './types/AbHollysysMircoFrontEndApp';
+export * from './types/model';
+export * from './types/HollysysAppManager';
