@@ -4,15 +4,15 @@
     "name": "quantianchao",
     "email": "304033826@qq.com"
   },
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "微前端基座，负责管理微前端各个应用",
   "main": "dist/lib/core.js",
   "module": "dist/lib/core.js",
+  "typings": "dist/types/core.d.ts",
   "scripts": {
     "start": "parcel index.html --open",
     "build": "webpack --config webpack.config.js",
-    "uml": "tsuml2 --glob ./src/**/*.ts  ",
-    "publish": "npm publish --access public"
+    "uml": "tsuml2 --glob ./src/**/*.ts  "
   },
   "license": "MIT",
   "dependencies": {
