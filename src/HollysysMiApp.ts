@@ -1,4 +1,4 @@
-import { AbstractHollysysMircoFrontEndApp } from "./lib/AbHollysysMircoFrontEndApp";
+import { AbstractHollysysMircoFrontEndApp } from "./types/AbHollysysMircoFrontEndApp";
 
 /**
  * @ Mi应用

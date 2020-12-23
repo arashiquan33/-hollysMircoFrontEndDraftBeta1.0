@@ -6,14 +6,15 @@ import {AppConfig,App} from './model'
 
 
 export class HollysysAppManager {
-    private appsConfig: AppConfig[] = [];
-    private appsArray: Array<App> = [];
+    
+    private static appsConfig: AppConfig[] = [];
+    private static appsArray: Array<App> = [];
 
     /**
      * @description 注册应用，缓存应用注册配置对象
      * @param configs
      */
-    public registerApps(configs: AppConfig[]) {
+    public static registerApps(configs: AppConfig[]) {
         this.appsConfig = configs;
     }
 
@@ -21,7 +22,7 @@ export class HollysysAppManager {
     /**
      * @description 获取应用配置
      */
-    public getAppsConfig():AppConfig[]{
+    public static getAppsConfig():AppConfig[]{
          return this.appsConfig;
     }
 
@@ -29,7 +30,7 @@ export class HollysysAppManager {
      * @description 获取当前所有应用
      */
 
-    public getApps(): Array<App> {
+    public static getApps(): Array<App> {
         return this.appsArray;
     }
 
@@ -37,7 +38,7 @@ export class HollysysAppManager {
      * @description 下载装配应用
      * @param appConfig
      */
-    public installApp(appConfig: AppConfig) {
+    public static installApp(appConfig: AppConfig) {
         let instance = new appConfig.appClass(
             appConfig.name,
             appConfig.mountTo,
@@ -66,7 +67,7 @@ export class HollysysAppManager {
      * @description 卸载应用
      * @param appConfig
      */
-    public uninstallApp(appConfig: AppConfig) {
+    public static uninstallApp(appConfig: AppConfig) {
         var app = {} as App;
         var index = 0;
         this.appsArray.forEach((a, i) => {

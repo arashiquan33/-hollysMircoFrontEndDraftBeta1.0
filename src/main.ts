@@ -1,8 +1,8 @@
-import { HollysysAppManager } from "./lib/HollysysAppManager";
+import { HollysysAppManager } from "./types/HollysysAppManager";
 import { HollysysWorkOrderApp } from "./HollysysWorkOrderApp";
 import { HollysysMiApp } from "./HollysysMiApp";
 
-const hollysysyAppManager = new HollysysAppManager();
+
 
 const mountTo = document.getElementById(
     "container",
@@ -24,7 +24,7 @@ const registerAppsConfig = [
 ];
 
 //注册应用
-hollysysyAppManager.registerApps(registerAppsConfig);
+HollysysAppManager.registerApps(registerAppsConfig);
 
 window.addEventListener("hashchange", function () {
     let locationHash = window.location.hash;
@@ -36,11 +36,11 @@ window.addEventListener("hashchange", function () {
     );
     if (appConfig) {
         //先卸载之前的
-        let apps = hollysysyAppManager.getApps();
+        let apps = HollysysAppManager.getApps();
         apps.forEach((item) =>
-            hollysysyAppManager.uninstallApp(item),
+        HollysysAppManager.uninstallApp(item),
         );
         //装载应用
-        hollysysyAppManager.installApp(appConfig);
+        HollysysAppManager.installApp(appConfig);
     }
 });

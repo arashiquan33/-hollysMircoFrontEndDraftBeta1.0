@@ -1,5 +1,6 @@
 const path = require('path');
-
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 module.exports = {
   entry: './src/index.ts',
   output: {
@@ -18,5 +19,15 @@ module.exports = {
    },
    resolve: {   // 需要打包的文件后缀
     extensions: [".tsx", ".ts", ".js"]
-  }
+  },
+  devServer:{
+    port:1234
+  },
+  plugins:[
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'hollysys-mirco-front-end-core',
+      template: 'index.html'
+    })
+  ]
 };
