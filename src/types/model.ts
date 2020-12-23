@@ -23,3 +23,12 @@ export interface App extends AppConfig {
     isRunning: boolean;
     instance: AbstractHollysysMircoFrontEndApp;
 }
+
+export interface AppConstructorArguments{
+    name:string;
+    pathPrefix:string;
+    beforeInstall:Function;
+    install:Function;
+    uninstall:Function;
+    beforeUninstall:Function;
+}
