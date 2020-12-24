@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<head> </head>
+<head> 
+    <title><%= htmlWebpackPlugin.options.title %></title>
+</head>
 
 <style>
     html,
@@ -38,6 +40,10 @@
 <!--引用公共js-->
 <script src="https://unpkg.com/vue@2.6.12/dist/vue.min.js"></script>
 <script src="https://unpkg.com/vue-router@3.4.9/dist/vue-router.min.js"></script>
+<% if (htmlWebpackPlugin.options.isStandalone) { %>
+    <script src="<%= htmlWebpackPlugin.options.upkgscript %>"></script>
+  <% } 
+%>
 <body>
     <div class="page" id="page">
         <div class="menu">
