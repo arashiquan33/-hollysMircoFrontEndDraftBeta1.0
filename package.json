@@ -4,10 +4,10 @@
     "name": "quantianchao",
     "email": "304033826@qq.com"
   },
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "微前端基座，负责管理微前端各个应用",
   "main": "lib/hollysys-mirco-front-end-core.js",
-  "types": "lib/hollysys-mirco-front-end-core.d.ts",
+  "types": "types/hollysys-mirco-front-end-core.d.ts",
   "module": "lib/hollysys-mirco-front-end-core.js",
   "scripts": {
     "start": "webpack-dev-server --open",
