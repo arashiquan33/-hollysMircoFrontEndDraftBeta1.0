@@ -44,10 +44,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'hollysys-mirco-front-end-app-standalone',
       template: 'template.html',
-      isStandalone:true,
+      isStandalone:true,//添加变量，在template.html中通过判断来动态生成lib文件，并且指向unkg静态代理网站，让lib通过script方式加载
       upkgscript:'https://unpkg.com/'+name+'@'+version,
       filename:'lib/standalone.html',
-      chunks:['lib/hollysys-mirco-front-end-core']
+      chunks:['']
     }),
     //第二个是主应用运行时使用的html
     new HtmlWebpackPlugin({
