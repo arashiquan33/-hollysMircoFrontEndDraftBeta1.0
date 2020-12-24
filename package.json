@@ -4,7 +4,7 @@
     "name": "quantianchao",
     "email": "304033826@qq.com"
   },
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "微前端基座，负责管理微前端各个应用",
   "main": "lib/hollysys-mirco-front-end-core.js",
   "types": "types/hollysys-mirco-front-end-core.d.ts",
