@@ -4,7 +4,7 @@
     "name": "quantianchao",
     "email": "304033826@qq.com"
   },
-  "version": "1.1.9",
+  "version": "1.2.0",
   "description": "微前端基座，负责管理微前端各个应用",
   "main": "lib/hollysys-mirco-front-end-core.js",
   "types": "types/hollysys-mirco-front-end-core.d.ts",
@@ -13,7 +13,7 @@
     "start": "webpack-dev-server --open",
     "build": "webpack --config webpack.config.js && webpack --config webpack.config.lib.js",
     "uml": "tsuml2 --glob ./src/**/*.ts",
-    "prepublish": "yarn version & yarn build"
+    "prepublish": "yarn build"
   },
   "license": "MIT",
   "dependencies": {
