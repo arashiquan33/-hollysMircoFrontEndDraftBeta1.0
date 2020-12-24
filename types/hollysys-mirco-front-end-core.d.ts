@@ -22,14 +22,14 @@ export declare class HollysysMircoFrontEndApp {
     private pathPrefix;
     getName(): string;
     getPathPrefix(): string;
-    beforeInstall: Function;
-    install: Function;
-    uninstall: Function;
-    beforeUninstall: Function;
+    beforeInstall: () => Promise<void>;
+    install: (installFunctionArguments: InstallFunctionArguments) => Promise<void>;
+    uninstall: () => Promise<void>;
+    beforeUninstall: () => Promise<void>;
 }
-export declare class HollysysAppManager {
+export declare class HollysysMircoFrontEndAppManager {
     private static appsConfig;
-    private static appsArray;
+    private static appMountTo;
     /**
      * @description 注册应用，缓存应用注册配置对象
      * @param configs
@@ -42,12 +42,11 @@ export declare class HollysysAppManager {
     /**
      * @description 获取当前所有应用
      */
-    static getApps(): Array<App>;
     /**
      * @description 下载装配应用
      * @param appConfig
      */
-    static installApp(appConfig: AppConfig): void;
+    static installApp(app: HollysysMircoFrontEndApp): Promise<void>;
     /**
      * @description 卸载应用
      * @param appConfig
@@ -61,15 +60,15 @@ export interface AppConfig {
     mountTo: HTMLElement;
     appClass: Appclass;
 }
-export interface App extends AppConfig {
-    isRunning: boolean;
-    instance: AbstractHollysysMircoFrontEndApp;
-}
 export interface AppConstructorArguments {
     name: string;
     pathPrefix: string;
-    beforeInstall: Function;
-    install: Function;
-    uninstall: Function;
-    beforeUninstall: Function;
+    beforeInstall: () => Promise<void>;
+    install: () => Promise<void>;
+    uninstall: () => Promise<void>;
+    beforeUninstall: () => Promise<void>;
+}
+export interface InstallFunctionArguments {
+    mountTo: string;
+    props: Object;
 }

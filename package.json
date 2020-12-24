@@ -12,8 +12,7 @@
   "scripts": {
     "start": "webpack-dev-server --open",
     "build": "webpack --config webpack.config.js && webpack --config webpack.config.lib.js",
-    "uml": "tsuml2 --glob ./src/**/*.ts",
-    "prepublish": "yarn build"
+    "uml": "tsuml2 --glob ./src/**/*.ts"
   },
   "license": "MIT",
   "dependencies": {

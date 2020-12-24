@@ -75,18 +75,24 @@ export  class HollysysMircoFrontEndApp {
     //     return this.mountTo;
     // }
 
-    public beforeInstall:Function=function(){};
-    public install:Function=function(){};
-    public uninstall:Function=function(){};
-    public beforeUninstall:Function=function(){};
+    public beforeInstall:() => Promise<void>;
+
+    public install:(installFunctionArguments:InstallFunctionArguments) => Promise<void>;
+   
+    public uninstall:() => Promise<void>;
+
+    public beforeUninstall:() => Promise<void>;
   
 }
 
 
-export class HollysysAppManager {
+export class HollysysMircoFrontEndAppManager {
     
     private static appsConfig: AppConfig[] = [];
-    private static appsArray: Array<App> = [];
+
+    private static appMountTo='#mountTo';
+
+   // private static appsArray: Array<App> = [];
 
     /**
      * @description 注册应用，缓存应用注册配置对象
@@ -95,6 +101,12 @@ export class HollysysAppManager {
     public static registerApps(configs: AppConfig[]) {
         this.appsConfig = configs;
     }
+
+    
+    // public static registerStandAloneApp(app:HollysysMircoFrontEndApp){
+    //     app.
+         
+    // }
 
 
     /**
@@ -108,37 +120,42 @@ export class HollysysAppManager {
      * @description 获取当前所有应用
      */
 
-    public static getApps(): Array<App> {
-        return this.appsArray;
-    }
+    // public static getApps(): Array<App> {
+    //     return this.appsArray;
+    // }
 
     /**
      * @description 下载装配应用
      * @param appConfig
      */
-    public static installApp(appConfig: AppConfig) {
-        let instance = new appConfig.appClass(
-            appConfig.name,
-            appConfig.mountTo,
-        );
-        let isRunning = true;
-        let {
-            name,
-            pathPrefix,
-            mountTo,
-            appClass,
-        } = appConfig;
-        let app = {
-            instance,
-            isRunning,
-            name,
-            pathPrefix,
-            mountTo,
-            appClass,
-        };
-        this.appsArray.push(app);
-        app.instance.beforeInstall();
-        app.instance.install();
+    public static async installApp(app: HollysysMircoFrontEndApp) {
+        await app.beforeInstall();
+        await app.install({
+            mountTo:this.appMountTo,
+            props:{a:1}
+        });
+        // let instance = new appConfig.appClass(
+        //     appConfig.name,
+        //     appConfig.mountTo,
+        // );
+        // let isRunning = true;
+        // let {
+        //     name,
+        //     pathPrefix,
+        //     mountTo,
+        //     appClass,
+        // } = appConfig;
+        // let app = {
+        //     instance,
+        //     isRunning,
+        //     name,
+        //     pathPrefix,
+        //     mountTo,
+        //     appClass,
+        // };
+        // this.appsArray.push(app);
+        // app.instance.beforeInstall();
+        // app.instance.install();
     }
 
     /**
@@ -146,19 +163,19 @@ export class HollysysAppManager {
      * @param appConfig
      */
     public static uninstallApp(appConfig: AppConfig) {
-        var app = {} as App;
-        var index = 0;
-        this.appsArray.forEach((a, i) => {
-            if (a.name === appConfig.name) {
-                app = a;
-                index = i;
-            }
-        });
-        if (app) {
-            app.instance.beforeUninstall();
-            app.instance.uninstall();
-            this.appsArray.splice(index);
-        }
+        // var app = {} as App;
+        // var index = 0;
+        // this.appsArray.forEach((a, i) => {
+        //     if (a.name === appConfig.name) {
+        //         app = a;
+        //         index = i;
+        //     }
+        // });
+        // if (app) {
+        //     app.instance.beforeUninstall();
+        //     app.instance.uninstall();
+        //     this.appsArray.splice(index);
+        // }
     }
 }
 
@@ -180,16 +197,21 @@ export interface AppConfig {
     appClass: Appclass;
 }
 
-export interface App extends AppConfig {
-    isRunning: boolean;
-    instance: AbstractHollysysMircoFrontEndApp;
-}
+// export interface App extends AppConfig {
+//     isRunning: boolean;
+//     instance: AbstractHollysysMircoFrontEndApp;
+// }
 
 export interface AppConstructorArguments{
     name:string;
     pathPrefix:string;
-    beforeInstall:Function;
-    install:Function;
-    uninstall:Function;
-    beforeUninstall:Function;
+    beforeInstall:()=> Promise<void>;
+    install:()=> Promise<void>;
+    uninstall:()=> Promise<void>;
+    beforeUninstall:()=> Promise<void>;
+}
+
+export interface InstallFunctionArguments{
+    mountTo:string;
+    props:Object
 }

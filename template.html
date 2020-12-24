@@ -32,9 +32,14 @@
     .header{
         flex-basis: 100px;
         background-color: cadetblue;
+        flex-shrink: 0;
     }
     .content{
         flex-grow: 1;
+    }
+    .mountTo{
+        width: 100%;
+        height: 100%;
     }
 </style>
 <!--引用公共js-->
@@ -51,7 +56,9 @@
         </div>
         <div class="main">
             <div class="header">头部</div>
-            <div class="content" id="content"></div>
+            <div class="content" id="content">
+                <div class="mountTo" id="mountTo"></div>
+            </div>
         </div>
     </div>
 </body>
