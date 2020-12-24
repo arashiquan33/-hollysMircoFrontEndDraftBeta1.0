@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 module.exports = {
-  mode:'development',
+  mode:'production',
   entry: {
     main:"./src/main.ts",//打包两个文件，一个是main,main是主应用的业务js
     lib:"./src/lib.ts" //lib 是主应用对外暴露的api js
