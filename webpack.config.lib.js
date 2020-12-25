@@ -6,14 +6,14 @@ const {name,version}=require("./package.json");
 module.exports = {
   mode:'production',
   entry: {
-    "hollysys-mirco-front-end-core":"./src/hollysys-mirco-front-end-core.ts" //lib 是主应用对外暴露的api js
+    "hollysys-mirco-front-end-framework":"./src/hollysys-mirco-front-end-framework.ts" //lib 是主应用对外暴露的api js
   },
   output: {
     path: path.resolve(__dirname, 'lib/'),
     filename: function(chunks,a){
         return '[name].js'
     },
-    library:'hollysysMircoFrontEndCore',//library 命名，当使用<script></script>加载时，挂载到window.hollysysMircoFrontEndCore,
+    library:'hollysysMircoFrontEndFramework',//library 命名，当使用<script></script>加载时，挂载到window.hollysysMircoFrontEndFramework,
     libraryTarget:"umd"   //输出为umd格式，适应不同模块系统
   },
   module: {

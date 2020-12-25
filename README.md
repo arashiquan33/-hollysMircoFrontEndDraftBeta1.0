@@ -36,7 +36,7 @@
 
 比如我们要做一个微前端框架，就需要在npm 上发布类似下面的包：
 
-@hollysys-mirco-front-end/core等等
+@hollysys-mirco-front-end/framework等等
 
 2.如何利用构建工具，比如rollup、webpack，打包出一个library库，像ant-design、element-ui等
 
@@ -50,7 +50,7 @@
 
 总体来讲，微前端架构要完成下列几件事情：
 
-# hollysys-mirco-front-end-core
+# hollysys-mirco-front-end-framework
 
 微前端应用基座，从 https://github.com/arashiquan33/hollysysyMircoFrontEndDraft  中进行升级，剥离微前端应用的实现，只保留管理模块
 

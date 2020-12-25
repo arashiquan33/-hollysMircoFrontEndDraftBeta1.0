@@ -1,14 +1,14 @@
 {
-  "name": "@hollysys-mirco-front-end/core",
+  "name": "@hollysys-mirco-front-end/framework",
   "author": {
     "name": "quantianchao",
     "email": "304033826@qq.com"
   },
-  "version": "1.2.0",
+  "version": "0.0.1",
   "description": "微前端基座，负责管理微前端各个应用",
-  "main": "lib/hollysys-mirco-front-end-core.js",
-  "types": "types/hollysys-mirco-front-end-core.d.ts",
-  "module": "lib/hollysys-mirco-front-end-core.js",
+  "main": "lib/hollysys-mirco-front-end-framework.js",
+  "types": "types/hollysys-mirco-front-end-framework.d.ts",
+  "module": "lib/hollysys-mirco-front-end-framework.js",
   "scripts": {
     "start": "webpack-dev-server --open",
     "build": "yarn version && webpack --config webpack.config.js && webpack --config webpack.config.lib.js",
@@ -20,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arashiquan33/hollysys-mirco-front-end-core"
+    "url": "git+https://github.com/arashiquan33/hollysys-mirco-front-end-framework"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^3.0.0",
@@ -32,6 +32,10 @@
   },
   "keywords": [
     "微前端",
-    "mircoFrontEnd"
+    "mircoFrontEnd",
+    "mirco-front-end-service",
+    "webpack",
+    "webpack library",
+    "npm package"
   ]
 }

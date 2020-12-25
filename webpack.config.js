@@ -33,7 +33,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     //第二个是主应用运行时使用的html
     new HtmlWebpackPlugin({
-      title: 'hollysys-mirco-front-end-core',
+      title: 'hollysys-mirco-front-end-framework',
       template: 'template.html',
       filename:'index.html'
     })
