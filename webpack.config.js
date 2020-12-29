@@ -43,15 +43,15 @@ module.exports = [{
     }
   ],
   plugins:[
-    new CleanWebpackPlugin({
+  //   new CleanWebpackPlugin({
 
-      dry:false,
+  //     dry:false,
 
-     // cleanOnceBeforeBuildPatterns:['dist'], // 或者使用绝对路径
+  //    // cleanOnceBeforeBuildPatterns:['dist'], // 或者使用绝对路径
 
-      dangerouslyAllowCleanPatternsOutsideProject: true,
+  //     dangerouslyAllowCleanPatternsOutsideProject: true,
 
-  }),
+  // }),
     //第二个是主应用运行时使用的html
     new HtmlWebpackPlugin({
       title: 'hollysys-mirco-front-end-framework',

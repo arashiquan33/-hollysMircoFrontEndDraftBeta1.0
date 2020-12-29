@@ -19,6 +19,16 @@
   "dependencies": {
     "typescript": "latest"
   },
+  "files": [
+    "dist/",
+    "types/",
+    "package.json",
+    "diagram.png",
+    "README.md",
+    "template.html",
+    "tsconfig.json",
+    "weboack.config.js"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/arashiquan33/hollysys-mirco-front-end-framework"

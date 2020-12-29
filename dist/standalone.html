@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<head> 
+    <title>hollysys-mirco-front-end-app-standalone</title>
+</head>
+
+<style>
+    html,
+    body {
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+    }
+    .page {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+    }
+    .menu{
+        display: flex;
+        flex-basis: 200px;
+        background-color: antiquewhite;
+    }
+    .main{
+        display: flex;
+        flex-grow: 1;
+        height: 100%;
+        flex-direction: column;
+    }
+    .header{
+        flex-basis: 100px;
+        background-color: cadetblue;
+        flex-shrink: 0;
+    }
+    .content{
+        flex-grow: 1;
+    }
+    .mountTo{
+        width: 100%;
+        height: 100%;
+    }
+</style>
+<!--引用公共js-->
+<script src="https://unpkg.com/vue@2.6.12/dist/vue.min.js"></script>
+<script src="https://unpkg.com/vue-router@3.4.9/dist/vue-router.min.js"></script>
+<!--如果是单机版，即打包standalone.html时，内置主框架已发布到unkpg的脚本，如果是整合版，即index.html，那么引入本地的脚本-->
+
+    <script src="https://unpkg.com/@hollysys-mirco-front-end/framework@latest"></script>
+  
+
+
+<body>
+    <div class="page" id="page">
+        <div class="menu" id="menu">
+            菜单
+        </div>
+        <div class="main">
+            <div class="header">头部</div>
+            <div class="content" id="content">
+                <div class="mountTo" id="mountTo"></div>
+            </div>
+        </div>
+    </div>
+    <!-- <script src="https://unpkg.com/@hollysys-mirco-front-end/app-vue-example@0.0.23/lib/hollysys-mirco-front-end-app-vue-example.umd.js"></script> -->
+</body>
