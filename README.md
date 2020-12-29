@@ -105,9 +105,26 @@
 
 你一定看到过类似于这样的package：@webpack/webpack-cli,@webpack/webpack-devserve .....，没错，我们就要实现像这样带组织机构的package，进行统一管理
 
-比如主框架的package：@hollysys-mirco-front-end/framework
+比如主框架的package：@hollysys-mirco-front-end/framework,要发布一个npm package，需要在工程目录下package.json动动手脚，具体可以查看www.npmjs.com中介绍
+
+package.json 部分内容：
+
+```json
+  "name": "@hollysys-mirco-front-end/framework",
+  "author": {
+    "name": "quantianchao",
+    "email": "304033826@qq.com"
+  },
+  "version": "0.0.31",
+  "description": "微前端基座，负责管理微前端各个应用",
+  "main": "dist/hollysys-mirco-front-end-framework.js",
+  "types": "types/hollysys-mirco-front-end-framework.d.ts",
+  "module": "dist/hollysys-mirco-front-end-framework.js",
+```
 
 各个微应用的package:@hollysys-mirco-front-end/app-你的应用名称
+
+
 
 
 
