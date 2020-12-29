@@ -92,7 +92,9 @@ export  class HollysysMircoFrontEndApp {
  export class HollysysMircoFrontEndAppManager {
 
     //私有化构造函数，不能通过new 来实例对象，只能通过getInstance()方法 
-    private constructor(){}
+    private constructor(){
+        throw new Error(`please use HollysysMircoFrontEndAppManager.getInstance() method to get manager,HollysysMircoFrontEndAppManager is single pattern class`)
+    }
 
     //缓存单例
     private static instance:HollysysMircoFrontEndAppManager;

@@ -3,6 +3,7 @@
  //获取实例
  const hollysysMircoFrontEndAppManager =  HollysysMircoFrontEndAppManager.getInstance();
 
+
  //注册微应用
  hollysysMircoFrontEndAppManager.registerApp({
      name:'@hollysys-mirco-front-end/app-vue-example',
@@ -13,3 +14,4 @@
 
  //启动
  hollysysMircoFrontEndAppManager.bootstrap();
+
