@@ -93,13 +93,21 @@
 
 微应用脚手架模板类似于：https://github.com/arashiquan33/hollysys-mirco-front-end-app-vue-example
 
-在永远各自的仓库后，就可以进行独立开发，并且每个工程集成webpack或者rollup这样的工具进行独立构建打包
+在拥有各自的仓库后，就可以进行独立开发，并且每个工程集成webpack或者rollup这样的工具进行独立构建打包
 
 至于部署，可结合docker完成
 
 这些内容，我们都可以通过提供微应用开发脚手架，我们称为mfe-cli来完成
 
-## 共享html
+## 应用间依赖
+
+说到依赖，就不得不提npm package，大多数情况下我们都在使用别人写的package，这次我们做主人，创建属于自己的package
+
+你一定看到过类似于这样的package：@webpack/webpack-cli,@webpack/webpack-devserve .....，没错，我们就要实现像这样带组织机构的package，进行统一管理
+
+比如主框架的package：@hollysys-mirco-front-end/framework
+
+各个微应用的package:@hollysys-mirco-front-end/app-你的应用名称
 
 
 
