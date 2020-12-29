@@ -75,7 +75,7 @@
 
 6.微应用与微应用之间如何互相依赖
 
-7.主应用、微应用如何样式隔离、变量隔离，做到沙箱sandboxsha
+7.主应用、微应用如何样式隔离、变量隔离，做到沙箱sandbox
 
 ……
 
@@ -85,7 +85,26 @@
 
 ## 独立开发、构建、部署
 
-1.利用github或者gitlab，主应用与每个微应用创建属于自己的repo
+1.利用github或者gitlab，主应用与每个微应用创建属于自己的repo。
+
+主应用仓库类似于：https://github.com/arashiquan33/hollysys-mirco-front-end-framework
+
+各个微应用也拥有属于自己的repo，但是就像vue、react框架那样，我们需要提供创建微应用工程的脚手架，方便微应用在几乎一样的规则下开发
+
+微应用脚手架模板类似于：https://github.com/arashiquan33/hollysys-mirco-front-end-app-vue-example
+
+在永远各自的仓库后，就可以进行独立开发，并且每个工程集成webpack或者rollup这样的工具进行独立构建打包
+
+至于部署，可结合docker完成
+
+这些内容，我们都可以通过提供微应用开发脚手架，我们称为mfe-cli来完成
+
+## 共享html
+
+
+
+
+
 
 
 
