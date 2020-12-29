@@ -85,122 +85,155 @@ export  class HollysysMircoFrontEndApp {
   
 }
 
+/**
+ * @description 微应用管理类，负责微应用的注册、装载、卸载,采用单例模式，同时只能存在一个manager
+ * @example const hollysysMircoFrontEndAppManager=HollysysMircoFrontEndAppManager.getInstance();
+ */
+ export class HollysysMircoFrontEndAppManager {
 
-export class HollysysMircoFrontEndAppManager {
-    
-    private static appsConfig: AppConfig[] = [];
+    //私有化构造函数，不能通过new 来实例对象，只能通过getInstance()方法 
+    private constructor(){}
 
-    private static appMountTo='#mountTo';
-
-   // private static appsArray: Array<App> = [];
+    //缓存单例
+    private static instance:HollysysMircoFrontEndAppManager;
 
     /**
-     * @description 注册应用，缓存应用注册配置对象
-     * @param configs
+     * 获取单例
      */
-    public static registerApps(configs: AppConfig[]) {
-        this.appsConfig = configs;
+    public static getInstance(): HollysysMircoFrontEndAppManager {
+        if (this.instance == null) {
+            this.instance = new HollysysMircoFrontEndAppManager();
+        }
+        return HollysysMircoFrontEndAppManager.instance;
+    }
+    
+    //微应用挂载的节点ID
+    private  _appMountTo='#mountTo';
+
+    private  _menuMountTo='#menu';
+
+    private _isBootstrapCompleted:boolean=false;
+
+    //已经注册的所有微应用
+    private  _hasRegisterApps: RegisterAppArguments[]=[];
+
+
+    /**
+     * @description 注册应用
+     * @param registerAppArguments
+     */
+    public registerApp(registerAppArguments: RegisterAppArguments) {
+        this._hasRegisterApps.push(registerAppArguments);
     }
 
-    
-    // public static registerStandAloneApp(app:HollysysMircoFrontEndApp){
-    //     app.
-         
-    // }
-
-
     /**
-     * @description 获取应用配置
+     * @description 获取注册的应用
      */
-    public static getAppsConfig():AppConfig[]{
-         return this.appsConfig;
+    public getRegisterApps():RegisterAppArguments[]{
+        return this._hasRegisterApps;
     }
 
-    /**
-     * @description 获取当前所有应用
-     */
-
-    // public static getApps(): Array<App> {
-    //     return this.appsArray;
-    // }
+    public  downloadApp(registerAppArguments:RegisterAppArguments):Promise<any>{
+           return new Promise((resolve,reject)=>{
+                //获取head的标签
+                var head= document.getElementsByTagName('head')[0];
+                //创建script标签
+                var script= document.createElement('script');
+                //属性赋值
+                script.type= 'text/javascript';
+                //添加src属性值
+                script.src= registerAppArguments.appModuleUrl;
+                head.appendChild(script);
+                //回调
+                script.onload =  function(e) {
+                    console.log(e)
+                    resolve(true);
+                };
+           })
+    }
 
     /**
      * @description 下载装配应用
      * @param appConfig
      */
-    public static async installApp(app: HollysysMircoFrontEndApp) {
+    public  async installApp(app: HollysysMircoFrontEndApp) {
         await app.beforeInstall();
         await app.install({
-            mountTo:this.appMountTo,
+            mountTo:this._appMountTo,
             props:{a:1}
         });
-        // let instance = new appConfig.appClass(
-        //     appConfig.name,
-        //     appConfig.mountTo,
-        // );
-        // let isRunning = true;
-        // let {
-        //     name,
-        //     pathPrefix,
-        //     mountTo,
-        //     appClass,
-        // } = appConfig;
-        // let app = {
-        //     instance,
-        //     isRunning,
-        //     name,
-        //     pathPrefix,
-        //     mountTo,
-        //     appClass,
-        // };
-        // this.appsArray.push(app);
-        // app.instance.beforeInstall();
-        // app.instance.install();
     }
 
     /**
      * @description 卸载应用
      * @param appConfig
      */
-    public static uninstallApp(appConfig: AppConfig) {
-        // var app = {} as App;
-        // var index = 0;
-        // this.appsArray.forEach((a, i) => {
-        //     if (a.name === appConfig.name) {
-        //         app = a;
-        //         index = i;
-        //     }
-        // });
-        // if (app) {
-        //     app.instance.beforeUninstall();
-        //     app.instance.uninstall();
-        //     this.appsArray.splice(index);
-        // }
+    public  uninstallApp() {
+      
+    }
+
+    /**
+     * @description 启动
+     */
+    public bootstrap(){
+
+        //如果已经初始化成功，后续再调用该方法，直接return
+        if(this._isBootstrapCompleted) return;
+
+        //绑定浏览器hashchange监听器
+        this.addHashchangeListener();
+
+        this._isBootstrapCompleted=true;
+    }
+
+    /**
+     * @description 绑定hashchange
+     */
+    private addHashchangeListener(){
+        this.hashChangeHandler();
+        window.addEventListener('hashchange',this.hashChangeHandler);
+    }
+
+    /**
+     * @description 浏览器hashchange变化的回调函数
+     */
+    private async hashChangeHandler(){
+        let hash = location.hash;
+        let registerApps=this.getRegisterApps();
+        let hashMatchedRegisterApp=registerApps.find((registerApp)=>{
+               let {routerBasePath} = registerApp;    
+               let reg=new RegExp("^#"+routerBasePath,"g");
+               if(reg.test(hash)) return true;
+        })
+        if(hashMatchedRegisterApp){
+           let downloadSuccess =  await this.downloadApp(hashMatchedRegisterApp); 
+        }
     }
 }
 
-
-export type Appclass = new (
-    ...arg: any
-) => AbstractHollysysMircoFrontEndApp;
+//创建单例对象
+const managerInstance=HollysysMircoFrontEndAppManager.getInstance();
 
 
-//抽象定义应用注册时传递的参数
-export interface AppConfig {
-    //实例化应用的名称
-    name: string;
-    //应用的路由前缀
-    pathPrefix: string;
-    //应用挂载的HTMLElement
-    mountTo: HTMLElement;
-    //应用对应的class
-    appClass: Appclass;
+
+
+
+
+
+//注册APP菜单参数对象
+export interface RegisterAppMenuArguments{
+   displayName:string  
+   link?:string
+   subMenu?:RegisterAppMenuArguments[]
 }
 
-// export interface App extends AppConfig {
-//     isRunning: boolean;
-//     instance: AbstractHollysysMircoFrontEndApp;
-// }
+//注册APP参数对象
+export interface RegisterAppArguments{
+    name:string
+    appModuleUrl:string
+    version:string
+    routerBasePath:string
+}
 
 export interface AppConstructorArguments{
     name:string;
