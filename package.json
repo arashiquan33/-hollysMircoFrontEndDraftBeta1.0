@@ -4,14 +4,15 @@
     "name": "quantianchao",
     "email": "304033826@qq.com"
   },
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "微前端基座，负责管理微前端各个应用",
-  "main": "lib/hollysys-mirco-front-end-framework.js",
+  "main": "dist/hollysys-mirco-front-end-framework.js",
   "types": "types/hollysys-mirco-front-end-framework.d.ts",
-  "module": "lib/hollysys-mirco-front-end-framework.js",
+  "module": "dist/hollysys-mirco-front-end-framework.js",
   "scripts": {
     "start": "webpack-dev-server --open",
-    "build": "yarn version && webpack --config webpack.config.js && webpack --config webpack.config.lib.js",
+    "build": "webpack --config webpack.config.js",
+    "build:all": "webpack --config webpack.config.js && webpack --config webpack.config.lib.js",
     "uml": "tsuml2 --glob ./src/**/*.ts"
   },
   "license": "MIT",
@@ -37,5 +38,8 @@
     "webpack",
     "webpack library",
     "npm package"
+  ],
+  "browserslist": [
+    "Chrome >70"
   ]
 }
