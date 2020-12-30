@@ -182,19 +182,23 @@ anyway，应用之间的依赖关系我们通过npm package 来解决。
 
 abstract class AbstractHollysysMircoFrontEndApp {
  
-   constructor(name: string, mountTo: HTMLElement) {
+   constructor(name: string, mountTo: HTMLElement,props:any) {
        this.name = name;
        this.mountTo = mountTo;
+       this.props=props;
    }
    
    //微应用名称
    private name: string;
 
-   //挂载的DOM节点
+   //挂载的DOM节点，即微应用在html中显示到哪个区域
    private mountTo: HTMLElement;
+   
+   //应用接收外部传递的props共享信息
+   private props:any
 
 
-   //定义一系列 hook，微应用可自行实现hook
+   //定义一系列 hook，微应用可自行实现hook,返回Promise，解决函数体内有可能出现的异步情况
    
    //应用安装前
    abstract beforeInstall(): Promise<any>;
@@ -210,6 +214,43 @@ abstract class AbstractHollysysMircoFrontEndApp {
 }
 
 ```
+
+2.实现一个具体的微应用，以上述示例中app-vue-example为例:
+
+```js
+
+ import Vue from "vue";
+ import App from "./App.vue";
+ 
+ class HollysysAppVueExampe extends AbstractHollysysMircoFrontEndApp {
+ 
+   public beforeInstall() {
+       console.log(`HollysysAppVueExampe is preparing install`);
+       Promise.resolve();
+   }
+
+   //安装的时候，实例化vue，挂载到mountTo节点
+   public install() {
+       let {mountTo,props} = this;
+       new Vue({
+              props,
+              render: h => h(App)
+            }).$mount(mountTo);
+       return Promise.resolve();
+   }
+
+   public beforeUninstall() {
+       console.log(`HollysysAppVueExampe is  preparing uninstall`);
+   }
+
+  //卸载的时候把自己渲染的区域清空
+   public uninstall() {
+       console.log(`HollysysAppVueExampe is  uninstalled`);
+       this.mountTo.innerHTML=""
+   }
+}
+
+```js
 
 
 
