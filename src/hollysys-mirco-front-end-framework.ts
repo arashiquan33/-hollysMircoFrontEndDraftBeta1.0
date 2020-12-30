@@ -1,3 +1,5 @@
+//var System=require('systemjs');
+
 /**
  * @ =应用抽象类
  */
@@ -89,11 +91,13 @@ export  class HollysysMircoFrontEndApp {
  * @description 微应用管理类，负责微应用的注册、装载、卸载,采用单例模式，同时只能存在一个manager
  * @example const hollysysMircoFrontEndAppManager=HollysysMircoFrontEndAppManager.getInstance();
  */
+ 
+
  export class HollysysMircoFrontEndAppManager {
 
     //私有化构造函数，不能通过new 来实例对象，只能通过getInstance()方法 
     private constructor(){
-        throw new Error(`please use HollysysMircoFrontEndAppManager.getInstance() method to get manager,HollysysMircoFrontEndAppManager is single pattern class`)
+        console.warn(`please use HollysysMircoFrontEndAppManager.getInstance() method to get manager,insteadof new HollysysMircoFrontEndAppManager(),it  is single pattern class`)
     }
 
     //缓存单例
@@ -148,8 +152,9 @@ export  class HollysysMircoFrontEndApp {
                 head.appendChild(script);
                 //回调
                 script.onload =  function(e) {
-                    console.log(e)
-                    resolve(true);
+                    const module = window[registerAppArguments.appModuleName];
+                    debugger;
+                    resolve(module);
                 };
            })
     }
@@ -193,7 +198,7 @@ export  class HollysysMircoFrontEndApp {
      */
     private addHashchangeListener(){
         this.hashChangeHandler();
-        window.addEventListener('hashchange',this.hashChangeHandler);
+        window.addEventListener('hashchange',this.hashChangeHandler.bind(this));
     }
 
     /**
@@ -208,13 +213,16 @@ export  class HollysysMircoFrontEndApp {
                if(reg.test(hash)) return true;
         })
         if(hashMatchedRegisterApp){
-           let downloadSuccess =  await this.downloadApp(hashMatchedRegisterApp); 
+           let appModule =  await this.downloadApp(hashMatchedRegisterApp); 
+           if (appModule){
+               await this.installApp(appModule);
+           }
         }
     }
 }
 
 //创建单例对象
-const managerInstance=HollysysMircoFrontEndAppManager.getInstance();
+//const managerInstance=HollysysMircoFrontEndAppManager.getInstance();
 
 
 
@@ -233,6 +241,7 @@ export interface RegisterAppMenuArguments{
 export interface RegisterAppArguments{
     name:string
     appModuleUrl:string
+    appModuleName:string
     version:string
     routerBasePath:string
 }

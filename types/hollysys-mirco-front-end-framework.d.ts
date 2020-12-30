@@ -83,6 +83,7 @@ export interface RegisterAppMenuArguments {
 export interface RegisterAppArguments {
     name: string;
     appModuleUrl: string;
+    appModuleName: string;
     version: string;
     routerBasePath: string;
 }

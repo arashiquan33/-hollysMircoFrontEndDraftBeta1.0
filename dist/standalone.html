@@ -45,9 +45,14 @@
 <!--引用公共js-->
 <script src="https://unpkg.com/vue@2.6.12/dist/vue.min.js"></script>
 <script src="https://unpkg.com/vue-router@3.4.9/dist/vue-router.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/systemjs/dist/system.min.js"></script>
+
 <!--如果是单机版，即打包standalone.html时，内置主框架已发布到unkpg的脚本，如果是整合版，即index.html，那么引入本地的脚本-->
 
     <script src="https://unpkg.com/@hollysys-mirco-front-end/framework@latest"></script>
+    <script>
+        window._HOLLYSYS_MIRCO_FRONT_END_STAND_ALONE=true;
+    </script>
   
 
 

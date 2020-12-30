@@ -35,11 +35,12 @@ module.exports = [{
   //  contentBasePublicPath: '/dist'
   //  contentBase: [path.join(__dirname, 'dist')],
     //publicPath:'/app',
-  //  watchContentBase: true
+    watchContentBase: true
   },
   externals:[
     {
-      "hollysys-mirco-front-end-framework":"hollysysMircoFrontEndFramework"
+      "hollysys-mirco-front-end-framework":"hollysysMircoFrontEndFramework",
+      "systemjs":"System"
     }
   ],
   plugins:[

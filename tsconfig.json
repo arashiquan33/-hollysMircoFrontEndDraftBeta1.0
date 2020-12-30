@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "suppressImplicitAnyIndexErrors": true,
     "target": "es2020",
     "module": "esnext",
     "esModuleInterop": true,
