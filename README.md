@@ -290,6 +290,9 @@ export default hollysysMircoFrontEndAppVueExample;
 
 ```
 
+>**这个例子其实很好的证明了，作为微应用的开发者，你只需要把你利用vue/react/angular等框架的初始化代码包裹到install方法就好，其他和之前的开发模式一模一样**
+
+
 3.定义应用管理者(单例)，管理微应用的注册、下载、安装、卸载等等.
 
 >+ 注册微应用（registerApp）
@@ -423,6 +426,24 @@ new HtmlWebpackPlugin({
 
 1.目前框架采用了动态创建script标签来加载微应用打包出来的js脚本，脚本加载完成后，获取应用注册时配置的脚本可以暴漏出来的变量，以此来获取微应用暴漏的 **HollysysMircoFrontEndApp**对象
 
+注册微应用：
+
+```js
+
+ //获取实例
+ const hollysysMircoFrontEndAppManager =  HollysysMircoFrontEndAppManager.getInstance();
+ 
+ //注册微应用
+ hollysysMircoFrontEndAppManager.registerApp({
+     name:'@hollysys-mirco-front-end/app-vue-example',
+     number:'0.0.24',
+     appModuleName:'hollysysMircoFrontEndAppVueExample',
+     appModuleUrl:'https://unpkg.com/@hollysys-mirco-front-end/app-vue-example@0.0.24/lib/hollysys-mirco-front-end-app-vue-example.umd.js',
+     routerBasePath:'/app-vue-example'
+ })
+
+```
+
 ```js
 
     public  downloadApp(registerAppArguments:RegisterAppArguments):Promise<any>{
@@ -449,7 +470,9 @@ new HtmlWebpackPlugin({
 2.后期会引入system.js模块系统来做到不用创建script标签来加载微应用，防止出现变量冲突的情况
 
 
+### 结语
 
+目前框架还在持续丰富中....
 
 
 
