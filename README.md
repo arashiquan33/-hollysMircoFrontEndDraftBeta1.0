@@ -180,6 +180,7 @@ anyway，应用之间的依赖关系我们通过npm package 来解决。
 
 ```js
 
+//抽象类
 abstract class AbstractHollysysMircoFrontEndApp {
  
    constructor(name: string, mountTo: HTMLElement,props:any) {
@@ -215,42 +216,97 @@ abstract class AbstractHollysysMircoFrontEndApp {
 
 ```
 
-2.实现一个具体的微应用，以上述示例中app-vue-example为例:
+由于javascript语言的特性以及多数前端开发人员的习惯，我们可通过模板模式来改写上面的抽象类
+
+```js
+
+export  class HollysysMircoFrontEndApp {
+    constructor(appConstructorArguments:AppConstructorArguments) {
+       let {name,beforeInstall,install,uninstall,beforeUninstall,pathPrefix} = appConstructorArguments;
+       this.name=name;
+       this.pathPrefix=pathPrefix;
+       this.beforeInstall=beforeInstall;
+       this.install=install;
+       this.uninstall=uninstall;
+       this.beforeUninstall=beforeUninstall;
+    }
+    
+    //微应用名称
+    private name: string;
+
+    private pathPrefix:string;
+
+    //挂载的DOM节点
+   // private mountTo: HTMLElement;
+
+    //获取名称
+    public getName(): string {
+        return this.name;
+    }
+
+     //获取路由前缀
+     public getPathPrefix(): string {
+        return this.pathPrefix;
+    }
+
+    //获取挂载节点
+    // public getMountTo(): HTMLElement {
+    //     return this.mountTo;
+    // }
+
+    public beforeInstall:() => Promise<void>;
+
+    public install:(installFunctionArguments:InstallFunctionArguments) => Promise<void>;
+   
+    public uninstall:() => Promise<void>;
+
+    public beforeUninstall:() => Promise<void>;
+  
+}
+
+```
+
+2.实现一个具体的微应用，通过npm package 引入 @hollysys-mirco-front-end/framewor 暴漏应用模板类，然后创建一个微应用，最后export default 暴漏出去
+
+以上述示例中app-vue-example为例:
 
 ```js
 
  import Vue from "vue";
  import App from "./App.vue";
- 
- class HollysysAppVueExampe extends AbstractHollysysMircoFrontEndApp {
- 
-   public beforeInstall() {
-       console.log(`HollysysAppVueExampe is preparing install`);
-       return Promise.resolve();
-   }
+ import {
+  HollysysMircoFrontEndApp,
+  HollysysMircoFrontEndAppManager
+} from "@hollysys-mirco-front-end/framework";
 
-   //安装的时候，实例化vue，挂载到mountTo节点
-   public install() {
-       let {mountTo,props} = this;
-       new Vue({
-              props,
-              render: h => h(App)
-            }).$mount(mountTo);
-       return Promise.resolve();
-   }
+const hollysysMircoFrontEndAppVueExample = new HollysysMircoFrontEndApp({
+      name: process.env.npm_package_name,
+      beforeInstall: function() {
+        return Promise.resolve();
+      },
+      install: function({ mountTo, props,routerBasePath='' }) {
+        let routes = getRoutes(routerBasePath);
+        let router = new VueRouter({
+          routes // (缩写) 相当于 routes: routes
+        });
+        this.instance = new Vue({
+          props,
+          router,
+          render: h => h(App)
+        }).$mount(mountTo);
+        return Promise.resolve();
+      },
+      uninstall: function() {
+        this.install = null;
+        return Promise.resolve();
+      },
+      beforeUninstall: function() {
+      return Promise.resolve();
+      }
+});
 
-   public beforeUninstall() {
-       console.log(`HollysysAppVueExampe is  preparing uninstall`);
-       return Promise.resolve();
-   }
-
-  //卸载的时候把自己渲染的区域清空
-   public uninstall() {
-       console.log(`HollysysAppVueExampe is  uninstalled`);
-       this.mountTo.innerHTML="";
-       return Promise.resolve();
-   }
-}
+//很关键，把自己暴漏出去
+export default hollysysMircoFrontEndAppVueExample;
 
 ```
 
