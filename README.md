@@ -264,7 +264,20 @@ abstract class AbstractHollysysMircoFrontEndApp {
 ```js
 
  export class HollysysMircoFrontEndAppManager {
+ 
+     //缓存单例
+    private static instance:HollysysMircoFrontEndAppManager;
 
+    /**
+     * 获取单例
+     */
+    public static getInstance(): HollysysMircoFrontEndAppManager {
+        if (this.instance == null) {
+            this.instance = new HollysysMircoFrontEndAppManager();
+        }
+        return HollysysMircoFrontEndAppManager.instance;
+    }
+    
     //微应用挂载的节点ID
     private  _appMountTo='#mountTo';
 
