@@ -115,7 +115,14 @@
 
 你一定看到过类似于这样的package：@webpack/webpack-cli,@webpack/webpack-devserve .....，没错，我们就要实现像这样带组织机构的package，进行统一管理，要搞就要搞的像回事！
 
-比如主框架的package：@hollysys-mirco-front-end/framework（要发布一个npm package，需要在工程目录下package.json动动手脚，具体可以查看 https://www.npmjs.com 文档）
+比如主框架的package：@hollysys-mirco-front-end/framework
+
+::: tip 提示
+要发布一个npm package，需要在工程目录下package.json动动手脚，具体可以查看 https://www.npmjs.com 文档
+:::
+
+> **注意**
+> 要发布一个npm package，需要在工程目录下package.json动动手脚，具体可以查看 https://www.npmjs.com 文档
 
 package.json 部分内容：
 
@@ -142,15 +149,9 @@ package.json 部分内容：
   "version": "0.0.25",
   "description": "微前端应用示例",
   "main": "lib/hollysys-mirco-front-end-app-vue-example.umd.js",
-  "module": "lib/hollysys-mirco-front-end-app-vue-example.umd.js",
-  "scripts": {
-    "serve": "vue-cli-service serve --mode development --open",
-    "build": "vue-cli-service build",
-    "build:lib": "set build_lib=true && vue-cli-service build --target lib --dest ./lib --name hollysysMircoFrontEndAppVueExample --filename hollysys-mirco-front-end-app-vue-example ./src/main.js",
-    "build:all":"yarn build && yarn build:lib",
-    "lint": "vue-cli-service lint"
-   }
+  "module": "lib/hollysys-mirco-front-end-app-vue-example.umd.js"
 ```
+
 
 
 
