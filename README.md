@@ -1,6 +1,6 @@
 # 前言
 
-由于工作的需要，最近在构思一个服务于前端的“微服务”架构，即微前端.
+由于项目未来的需要，最近在构思一个服务于前端的“微服务”架构，即微前端.
 
 说到这里，可能有人要卧槽,一个微服务就够折腾了,怎么前端也要 "微服务" 化，放在一起**开发不香吗？**
 
@@ -409,6 +409,44 @@ new HtmlWebpackPlugin({
 
 ```
 
+### 微应用如何暴漏自己
+
+1.前端模块化目前有好几种方案,amd/commonjs/es module/umd/system.js 等,这几种方案中,umd算是兼容性最好的
+
+2.微应用通过export语法把实例化后的 **HollysysMircoFrontEndApp** 导出，再配合webpack打包library的功能，打包出一个脚本文件
+
+3.以上述app-vue-example微应用为例，打包出一个 **hollysys-mirco-front-end-app-vue-example.umd.js** 脚本
+
+可查看 https://github.com/arashiquan33/hollysys-mirco-front-end-app-vue-example 这个示例
+
+### 如何下载微应用并且获取微应用实例
+
+1.目前框架采用了动态创建script标签来加载微应用打包出来的js脚本，脚本加载完成后，获取应用注册时配置的脚本可以暴漏出来的变量，以此来获取微应用暴漏的 **HollysysMircoFrontEndApp**对象
+
+```js
+
+    public  downloadApp(registerAppArguments:RegisterAppArguments):Promise<any>{
+           return new Promise((resolve,reject)=>{
+                //获取head的标签
+                var head= document.getElementsByTagName('head')[0];
+                //创建script标签
+                var script= document.createElement('script');
+                //属性赋值
+                script.type= 'text/javascript';
+                //添加src属性值
+                script.src= registerAppArguments.appModuleUrl;
+                head.appendChild(script);
+                //回调
+                script.onload =  function(e) {
+                    const module = window[registerAppArguments.appModuleName];
+                    resolve(module);
+                };
+           })
+    }
+
+```
+
+2.后期会引入system.js模块系统来做到不用创建script标签来加载微应用，防止出现变量冲突的情况
 
 
 
