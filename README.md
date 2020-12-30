@@ -226,7 +226,7 @@ abstract class AbstractHollysysMircoFrontEndApp {
  
    public beforeInstall() {
        console.log(`HollysysAppVueExampe is preparing install`);
-       Promise.resolve();
+       return Promise.resolve();
    }
 
    //安装的时候，实例化vue，挂载到mountTo节点
@@ -241,12 +241,14 @@ abstract class AbstractHollysysMircoFrontEndApp {
 
    public beforeUninstall() {
        console.log(`HollysysAppVueExampe is  preparing uninstall`);
+       return Promise.resolve();
    }
 
   //卸载的时候把自己渲染的区域清空
    public uninstall() {
        console.log(`HollysysAppVueExampe is  uninstalled`);
-       this.mountTo.innerHTML=""
+       this.mountTo.innerHTML="";
+       return Promise.resolve();
    }
 }
 
@@ -264,6 +266,9 @@ abstract class AbstractHollysysMircoFrontEndApp {
 ```js
 
  export class HollysysMircoFrontEndAppManager {
+ 
+    //私有化构造函数，不能通过new 来实例对象，只能通过getInstance()方法 
+    private constructor(){}
  
      //缓存单例
     private static instance:HollysysMircoFrontEndAppManager;
