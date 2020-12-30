@@ -470,6 +470,20 @@ new HtmlWebpackPlugin({
 2.后期会引入system.js模块系统来做到不用创建script标签来加载微应用，防止出现变量冲突的情况
 
 
+### 运行主应用
+
+1.yarn install
+
+2.yarn serve 
+
+可查看目前已经做好的一个demo
+
+该demo中注册了一个微应用 https://www.npmjs.com/package/@hollysys-mirco-front-end/app-vue-example
+
+### 运行微应用
+
+请以至 https://github.com/arashiquan33/hollysys-mirco-front-end-app-vue-example
+
 ### 结语
 
 目前框架还在持续丰富中....
