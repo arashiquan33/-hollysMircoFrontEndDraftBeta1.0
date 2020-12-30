@@ -125,18 +125,20 @@
 
 package.json 部分内容：
 
-    ```js
-      "name": "@hollysys-mirco-front-end/framework",  //包名称
-      "author": {
-        "name": "quantianchao",
-        "email": "304033826@qq.com"
-      },
-      "version": "0.0.31", // 包版本
-      "description": "微前端基座，负责管理微前端各个应用",
-      "main": "dist/hollysys-mirco-front-end-framework.js", //入口文件
-      "types": "types/hollysys-mirco-front-end-framework.d.ts",
-      "module": "dist/hollysys-mirco-front-end-framework.js",
-    ```
+```js
+
+  "name": "@hollysys-mirco-front-end/framework",  //包名称
+  "author": {
+    "name": "quantianchao",
+    "email": "304033826@qq.com"
+  },
+  "version": "0.0.31", // 包版本
+  "description": "微前端基座，负责管理微前端各个应用",
+  "main": "dist/hollysys-mirco-front-end-framework.js", //入口文件
+  "types": "types/hollysys-mirco-front-end-framework.d.ts",
+  "module": "dist/hollysys-mirco-front-end-framework.js",
+  
+```
 
 各个微应用的package:@hollysys-mirco-front-end/app-vue-example
 
@@ -146,19 +148,20 @@ package.json 部分内容：
 
 package.json 部分内容：
 
-    ```js
+```js
 
-      "name":@hollysys-mirco-front-end/app-vue-example", //包名称
-      "version": "0.0.25", //版本
-      "description": "微前端应用示例",
-      "main": "lib/hollysys-mirco-front-end-app-vue-example.umd.js",
-      "module": "lib/hollysys-mirco-front-end-app-vue-example.umd.js",
-       "dependencies": {
-          "@hollysys-mirco-front-end/framework": "^0.0.32",  // 依赖主框架
-          "core-js": "^3.6.5",
-          "vue": "^2.6.11"
-       },
-    ```
+  "name":@hollysys-mirco-front-end/app-vue-example", //包名称
+  "version": "0.0.25", //版本
+  "description": "微前端应用示例",
+  "main": "lib/hollysys-mirco-front-end-app-vue-example.umd.js",
+  "module": "lib/hollysys-mirco-front-end-app-vue-example.umd.js",
+   "dependencies": {
+      "@hollysys-mirco-front-end/framework": "^0.0.32",  // 依赖主框架
+      "core-js": "^3.6.5",
+      "vue": "^2.6.11"
+   },
+   
+```
 
 app-vue-example微应用可以通过 **dependenices** 依赖来引入主应用framework暴露的一切
 
@@ -169,6 +172,7 @@ app-vue-example微应用可以通过 **dependenices** 依赖来引入主应用fr
 anyway，应用之间的依赖关系我们通过npm package 来解决。 
  
 
+### 主应用如何注册微应用，何时加载微应用，何时卸载，通过什么方式加载与卸载
 
 
 
