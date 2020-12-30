@@ -174,6 +174,45 @@ anyway，应用之间的依赖关系我们通过npm package 来解决。
 
 ### 主应用如何注册微应用，何时加载微应用，何时卸载，通过什么方式加载与卸载
 
+咋一看，这部分我们要解决的内容很多，看起来很复杂，没关系，我们来捋一捋，我们可以通过抽象来把这事情讲清楚，大家就懂
+
+1.抽象微应用,定义每个微应用该有的一些属性和方法
+
+```js
+
+abstract class AbstractHollysysMircoFrontEndApp {
+ 
+   constructor(name: string, mountTo: HTMLElement) {
+       this.name = name;
+       this.mountTo = mountTo;
+   }
+   
+   //微应用名称
+   private name: string;
+
+   //挂载的DOM节点
+   private mountTo: HTMLElement;
+
+
+   //定义一系列 hook，微应用可自行实现hook
+   
+   //应用安装前
+   abstract beforeInstall(): Promise<any>;
+
+  //应用安装
+   abstract install():Promise<any>;
+
+    //应用卸载
+   abstract uninstall():Promise<any>;
+
+    //应用卸载前
+   abstract beforeUninstall():Promise<any>;
+}
+
+```
+
+
+
 
 
 
