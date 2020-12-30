@@ -216,7 +216,7 @@ abstract class AbstractHollysysMircoFrontEndApp {
 
 ```
 
-由于javascript语言的特性以及多数前端开发人员的习惯，我们可通过模板模式来改写上面的抽象类
+由于javascript语言的特性以及多数前端开发人员的习惯，我们可通过构造函数参数的形式来定义一个微应用Class
 
 ```js
 
@@ -234,26 +234,6 @@ export  class HollysysMircoFrontEndApp {
     //微应用名称
     private name: string;
 
-    private pathPrefix:string;
-
-    //挂载的DOM节点
-   // private mountTo: HTMLElement;
-
-    //获取名称
-    public getName(): string {
-        return this.name;
-    }
-
-     //获取路由前缀
-     public getPathPrefix(): string {
-        return this.pathPrefix;
-    }
-
-    //获取挂载节点
-    // public getMountTo(): HTMLElement {
-    //     return this.mountTo;
-    // }
-
     public beforeInstall:() => Promise<void>;
 
     public install:(installFunctionArguments:InstallFunctionArguments) => Promise<void>;
@@ -266,9 +246,9 @@ export  class HollysysMircoFrontEndApp {
 
 ```
 
-2.实现一个具体的微应用，通过npm package 引入 @hollysys-mirco-front-end/framewor 暴漏应用模板类，然后创建一个微应用，最后export default 暴漏出去
+2.实现一个具体的微应用，通过npm package 引入 @hollysys-mirco-front-end/framework 暴漏的微应用Class
 
-以上述示例中app-vue-example为例:
+以上述示例中app-vue-example为例，实例化一个HollysysMircoFrontEndApp，将vue对象的实例化包裹到微应用的安装方法内，最后把这个HollysysMircoFrontEndApp实例暴漏出去:
 
 ```js
 
@@ -301,7 +281,7 @@ const hollysysMircoFrontEndAppVueExample = new HollysysMircoFrontEndApp({
         return Promise.resolve();
       },
       beforeUninstall: function() {
-      return Promise.resolve();
+         return Promise.resolve();
       }
 });
 
@@ -402,6 +382,33 @@ export default hollysysMircoFrontEndAppVueExample;
 }
 
 ```
+
+### 共享HTML
+
+1.@hollysys-mirco-front-end/framework 这个package 需要打包出一个可以共享的html，里面定义整个应用看起来应该有的模样
+
+2.微应用在开发时，可通过webpack 插件 HtmlWebpackPlugin 来指定微应用应该使用的html。例如：
+
+```js
+
+vue.config.js中这样配置
+
+config.plugin("html").tap(args => {
+        args[0].template =
+          "node_modules/@hollysys-mirco-front-end/framework/dist/standalone.html";
+        return args;
+});
+
+如果是webpack.config.js
+
+new HtmlWebpackPlugin({
+  title: 'hollysys-mirco-front-end-app-standalone',
+  template: 'node_modules/@hollysys-mirco-front-end/framework/dist/standalone.html',
+  filename:'standalone.html',
+})
+
+```
+
 
 
 
