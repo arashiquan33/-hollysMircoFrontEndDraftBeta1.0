@@ -113,45 +113,51 @@
 
 说到依赖，就不得不提npm package，大多数情况下我们都在使用别人写的package，这次我们翻身做主人，创建属于自己的package！！！
 
-你一定看到过类似于这样的package：@webpack/webpack-cli,@webpack/webpack-devserve .....，没错，我们就要实现像这样带组织机构的package，进行统一管理，要搞就要搞的像回事！
+你一定看到过类似于这样的package：@webpack/webpack-cli,@webpack/webpack-devserve .....
 
-比如主框架的package：@hollysys-mirco-front-end/framework
+没错，我们就要实现像这样带组织机构的package，进行统一管理，要搞就要搞的像回事！
 
-::: tip 提示
-要发布一个npm package，需要在工程目录下package.json动动手脚，具体可以查看 https://www.npmjs.com 文档
-:::
+主框架的package：@hollysys-mirco-front-end/framework
 
-> **注意**
-> 要发布一个npm package，需要在工程目录下package.json动动手脚，具体可以查看 https://www.npmjs.com 文档
+    > **提示**
+    > 要发布一个npm package，需要在工程目录下package.json动动手脚，具体可以查看 https://www.npmjs.com 文档
 
-package.json 部分内容：
+    package.json 部分内容：
 
-```js
-  "name": "@hollysys-mirco-front-end/framework",
-  "author": {
-    "name": "quantianchao",
-    "email": "304033826@qq.com"
-  },
-  "version": "0.0.31",
-  "description": "微前端基座，负责管理微前端各个应用",
-  "main": "dist/hollysys-mirco-front-end-framework.js",
-  "types": "types/hollysys-mirco-front-end-framework.d.ts",
-  "module": "dist/hollysys-mirco-front-end-framework.js",
-```
+    ```js
+      "name": "@hollysys-mirco-front-end/framework",
+      "author": {
+        "name": "quantianchao",
+        "email": "304033826@qq.com"
+      },
+      "version": "0.0.31",
+      "description": "微前端基座，负责管理微前端各个应用",
+      "main": "dist/hollysys-mirco-front-end-framework.js",
+      "types": "types/hollysys-mirco-front-end-framework.d.ts",
+      "module": "dist/hollysys-mirco-front-end-framework.js",
+    ```
 
-各个微应用的package:@hollysys-mirco-front-end/app-微应用名称
+    各个微应用的package:@hollysys-mirco-front-end/app-vue-example
 
-package.json 部分内容：
+    > **提示**
+    >app-vue-example是其中一个微应用的名称
 
-```js
+    package.json 部分内容：
 
-  "name":@hollysys-mirco-front-end/app-vue-example",
-  "version": "0.0.25",
-  "description": "微前端应用示例",
-  "main": "lib/hollysys-mirco-front-end-app-vue-example.umd.js",
-  "module": "lib/hollysys-mirco-front-end-app-vue-example.umd.js"
-```
+    ```js
 
+      "name":@hollysys-mirco-front-end/app-vue-example",
+      "version": "0.0.25",
+      "description": "微前端应用示例",
+      "main": "lib/hollysys-mirco-front-end-app-vue-example.umd.js",
+      "module": "lib/hollysys-mirco-front-end-app-vue-example.umd.js"
+    ```
+
+ 这样，app-vue-example微应用就可以通过依赖来引入主应用framework暴露的一切，这部分一会介绍framework的时候会详细说.
+ 
+ 也就是应用之间的依赖关系我们通过npm package 来解决
+ 
+ 
 
 
 
