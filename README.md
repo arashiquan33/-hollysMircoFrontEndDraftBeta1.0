@@ -250,7 +250,84 @@ abstract class AbstractHollysysMircoFrontEndApp {
    }
 }
 
+```
+
+3.定义应用管理者(单例)，管理微应用的注册、下载、安装、卸载等等.
+
+>+ 注册微应用（registerApp）
+>+ 启动工程   （bootstrap）
+>+ 监听浏览器url-hash变化，找出当前hash对应的已经注册的微应用 （addHashchangeListener）
+>+ 卸载旧应用 (uninstallApp)
+>+ 下载新的微应用 （downloadApp)
+>+ 安装微应用 (installApp)
+
 ```js
+
+ export class HollysysMircoFrontEndAppManager {
+
+    //微应用挂载的节点ID
+    private  _appMountTo='#mountTo';
+
+    private  _menuMountTo='#menu';
+
+    private _isBootstrapCompleted:boolean=false;
+
+    //已经注册的所有微应用
+    private  _hasRegisterApps: RegisterAppArguments[]=[];
+
+
+    /**
+     * @description 注册应用
+     * @param registerAppArguments
+     */
+    public registerApp(registerAppArguments: RegisterAppArguments) {
+        this._hasRegisterApps.push(registerAppArguments);
+    }
+
+    /**
+     * @description 获取注册的应用
+     */
+    public getRegisterApps():RegisterAppArguments[]{
+        return this._hasRegisterApps;
+    }
+
+    public  downloadApp(registerAppArguments:RegisterAppArguments):Promise<any>{}
+
+    /**
+     * @description 下载装配应用
+     * @param appConfig
+     */
+    public  async installApp(app: HollysysMircoFrontEndApp) {
+        await app.beforeInstall();
+        await app.install({
+            mountTo:this._appMountTo,
+            props:{a:1}
+        });
+    }
+
+    /**
+     * @description 卸载应用
+     * @param appConfig
+     */
+    public  uninstallApp() {}
+
+    /**
+     * @description 启动
+     */
+    public bootstrap(){}
+
+    /**
+     * @description 绑定hashchange
+     */
+    private addHashchangeListener(){}
+
+    /**
+     * @description 浏览器hashchange变化的回调函数
+     */
+    private async hashChangeHandler(){}
+}
+
+```
 
 
 
